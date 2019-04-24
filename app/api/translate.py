@@ -3,7 +3,7 @@ author songjie
 """
 import json
 
-from flask import request, jsonify, Response
+from flask import request, Response
 
 from app.api import api
 from app.api.models.translate import Translate
