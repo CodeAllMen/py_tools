@@ -1,1 +1,5 @@
 start.sh
+.idea
+.vscode
+Pipfile
+Pipfile.lock

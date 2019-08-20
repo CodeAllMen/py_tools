@@ -9,6 +9,7 @@ name = "douban"
 flask = "*"
 requests = "*"
 googletrans = "*"
+tool-yy = "*"
 
 [requires]
 python_version = "3.6"
