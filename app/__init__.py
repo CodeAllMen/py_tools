@@ -8,6 +8,7 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object("config.settings")
     app.config.from_object("config.secure")
+    app.config.from_object("config.pin")
     register_blueprint(app)
     return app
 
