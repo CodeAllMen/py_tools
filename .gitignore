@@ -3,3 +3,5 @@ start.sh
 .vscode
 Pipfile
 Pipfile.lock
+config/pin.py
+**/__pycache__
