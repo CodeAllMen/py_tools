@@ -25,7 +25,7 @@ def check_is_pin():
     return Reply.error("无此 code， 请添加对应的code和类型")
 
 
-@api.route("/get_job")
+@api.route("/get_job", methods=['POST', 'GET'])
 def get_job():
     data = current_app.config['GETJOB']
     data = json.loads(data)
