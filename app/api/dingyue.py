@@ -29,4 +29,4 @@ def check_is_pin():
 def get_job():
     data = current_app.config['GETJOB']
     data = json.loads(data)
-    return Reply.success(data)
+    return Reply.json(data)

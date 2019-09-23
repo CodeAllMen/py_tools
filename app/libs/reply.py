@@ -54,15 +54,16 @@ class Reply(object):
         self._data_type = value
 
     @classmethod
-    def json(cls):
+    def json(cls, data=None):
         """
         :return:
         """
-        data = {
-            "result": cls._result,
-            "code": cls._code,
-            "msg": cls._msg
-        }
+        if data is None:
+            data = {
+                "result": cls._result,
+                "code": cls._code,
+                "msg": cls._msg
+            }
         data = json.dumps(data, default=cls.object_to_dict)
         cls.init()
         return Response(data, mimetype="application/json;charset=utf-8")
