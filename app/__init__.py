@@ -3,6 +3,8 @@ author songjie
 """
 from flask import Flask
 
+__all__ = ['create_app']
+
 
 def create_app():
     app = Flask(__name__)
