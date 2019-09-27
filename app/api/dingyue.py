@@ -5,6 +5,7 @@ import json
 
 from flask import request, current_app
 
+from app import redis
 from app.api import api
 from app.libs.reply import Reply
 
