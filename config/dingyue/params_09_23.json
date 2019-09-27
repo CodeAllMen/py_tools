@@ -1,80 +1,84 @@
 {
-    "data":
+  "data": [
     {
+      "data": {
         "task_id": 2404,
         "pin": "\\D(\\d{4,5})( jetzt|$|. Mit|. Bitte| - zum|. Ihre| im W)",
         "url": "http://myedqo1b.com/ZrBGQzgY?aff_sub2=joker2&aff_sub3=61&aff_sub4=2404&phone_id=1637310",
         "phone_id": 1637310,
         "app_id": 61,
         "actions": [
-        {
+          {
             "url": "(.*)idgw.vodafone.com/authorize#/trx(.*)",
             "cmd": "javascript:var interCodeAuth=0,checkAuth=function(){$(\"#continueButton\")&&$(\"#continueButton\").css(\"height\")&&($(\"#continueButton\").click(),window.clearInterval(interCodeAuth)),$(\"#reloadPageButton\")&&$(\"#reloadPageButton\").css(\"height\")&&($(\"#reloadPageButton\").click(),window.clearInterval(interCodeAuth))};interCodeAuth=setInterval(checkAuth,5e3);",
             "final": false,
             "action_id": 8849
-        },
-        {
+          },
+          {
             "url": "(.*)idgw.vodafone.com/authorize#/token(.*)",
             "cmd": "javascript:var interCodeToken=0,checkToken=function(){$(\"#main > div > div > div > div > div > div.common_message\")&&parseFloat($(\"#main > div > div > div > div > div > div.common_message\").css(\"height\"))>0&&(window.history.go(-1),window.clearInterval(interCodeToken)),$(\"#continueButton\")&&$(\"#continueButton\").css(\"height\")&&($(\"#continueButton\").click(),window.clearInterval(interCodeToken)),$(\"#reloadPageButton\")&&$(\"#reloadPageButton\").css(\"height\")&&($(\"#reloadPageButton\").click(),window.clearInterval(interCodeToken))};interCodeToken=setInterval(checkToken,2e3);",
             "final": false,
             "action_id": 8850
-        },
-        {
+          },
+          {
             "url": "(.*?)mgig.sp.vodafone.com/cal/paymentpage/papa/initworkflow/authenticate\\?code(.*?)",
             "cmd": "javascript:document.querySelector('#sbtPin').click();",
             "final": false,
             "action_id": 8851
-        },
-        {
+          },
+          {
             "url": "(.*?)payment.mobilcom-debitel.de/tan-verfahren(.*?)",
             "cmd": "javascript:document.querySelector('#form_tan').value=\"ZDYLLBAQ\";document.querySelector('#form_save').click();window.JS_API.addComment('[ZDYLLBAQ]');",
             "final": false,
             "action_id": 8852
-        },
-        {
+          },
+          {
             "url": "(.*?)payment.mobilcom-debitel.de.*click(.*?)",
             "cmd": "javascript:document.querySelector('#form_save').click();",
             "final": false,
             "action_id": 8853
-        },
-        {
+          },
+          {
             "url": "(.*?)mgig.sp.vodafone.com/cal/paymentpage/papa/initworkflow/authenticate\\?error(.*?)",
             "cmd": "javascript:document.querySelector('#paymentCode').value=\"ZDYLLBAQ\";document.querySelector('#sbtPin').click();window.JS_API.addComment('[ZDYLLBAQ]');",
             "final": false,
             "action_id": 8854
-        },
-        {
+          },
+          {
             "url": "(.*?)pay.*tan",
             "cmd": "javascript:document.querySelector('#tan').value=\"ZDYLLBAQ\";document.querySelector('#ok-button').click();window.JS_API.addComment('[ZDYLLBAQ]');",
             "final": false,
             "action_id": 8855
-        },
-        {
+          },
+          {
             "url": "(.*?)pay.*mypay-frontend2/.*token(.*?)",
             "cmd": "javascript:try{document.querySelector('#submit1').click();}catch(e){}try{document.querySelector('body > div > div > div.mdialog > button').click();}catch(e){}",
             "final": false,
             "action_id": 8856
-        },
-        {
+          },
+          {
             "url": "(.*)services.dimoco.at/smart/user\\?x-r(.*)",
             "cmd": "javascript:try{document.querySelector('#kaufenBtn').click();}catch(e){}try{document.querySelector('#wifi-btn').click();}catch(e){}",
             "final": false,
             "action_id": 8857
-        },
-        {
+          },
+          {
             "url": "(.*)bestcontent.fun/fortnite/index.html\\?serviceId(.*)",
             "cmd": "javascript:document.querySelector('#actionLink > img').click();",
             "final": false,
             "action_id": 8858
-        },
-        {
+          },
+          {
             "url": "(.*?)cap.telekom.de/cita/ui/(.*?)",
             "cmd": "javascript:try{document.querySelector('#content > div:nth-child(6) > step > div > div > div > fieldset > div.container-liquid.rounded-box-content.animate-show > ng-transclude > div > div > form > div > div > button.btn.btn-brand.ng-binding').click();}catch(e){}\r\njavascript:document.querySelector('#otp').value=\"ZDYLLBAQ\";document.querySelector('#content > div:nth-child(6) > step > div > div > div > fieldset > div.container-liquid.rounded-box-content.animate-show > ng-transclude > div > div > form > div > div.col-s-12.col-m-9.col-l-9.col-xl-9 > button.btn.btn-brand.ng-binding').click();window.JS_API.addComment('[ZDYLLBAQ]');",
             "final": false,
             "action_id": 8875
-        }],
+          }
+        ],
         "type": 3,
         "page": false
-    },
-    "error_code": 0
+      },
+      "error_code": 0
+    }
+  ]
 }

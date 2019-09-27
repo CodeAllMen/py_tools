@@ -5,6 +5,8 @@ import json
 
 from flask import Response
 
+__all__ = ['Reply']
+
 
 class Reply(object):
     _result = None
