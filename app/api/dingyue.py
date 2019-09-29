@@ -104,7 +104,9 @@ def update_config():
 
 @api.route("/config/login", methods=['POST'])
 def login():
-    return Reply.success("ok")
+    return Reply.success({
+        "token": "super_admin"
+    })
 
 
 @api.route("/config/get_info", methods=['GET'])
