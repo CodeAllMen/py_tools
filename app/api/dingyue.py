@@ -100,3 +100,13 @@ def update_config():
     if data is None:
         return Reply.error("此运营商code不存在")
     return Reply.success("ok") if redis.set(operator_code, form.config.data) else Reply.error("failed")
+
+
+@api.route("/config/login", methods=['POST'])
+def login():
+    return Reply.success("ok")
+
+
+@api.route("/config/get_info", methods=['GET'])
+def get_info():
+    return Reply.success("ok")
