@@ -7,6 +7,7 @@ from flask import request, current_app
 
 from app import redis
 from app.api import api
+from app.forms.dingyue import ConfigForm
 from app.libs.reply import Reply
 
 
@@ -39,6 +40,10 @@ def get_job():
 
 @api.route("/config/search_by_code", methods=['GET'])
 def search_by_code():
+    """
+    根据 operation_code 查询数据
+    :return:
+    """
     operation_code = request.values.get("operation_code", 0)
     if operation_code == 0:
         return Reply.error("failed")
@@ -49,3 +54,12 @@ def search_by_code():
         "operation_code": operation_code,
         "config": data
     })
+
+
+@api.route("/config/add_config", methods=['POST'])
+def add_config():
+    post = request.values
+    form = ConfigForm(post)
+    if not form.validate():
+        return Reply.error(form.errors)
+    return Reply.success("ok")
