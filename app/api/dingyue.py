@@ -4,6 +4,7 @@ Create by yy on 2019/9/9
 import json
 
 from flask import request, current_app
+from tool_yy import debug
 
 from app import redis
 from app.api import api
@@ -33,33 +34,69 @@ def get_job():
     获取配置文件
     :return: json
     """
-    data = current_app.config['GETJOB']
-    data = json.loads(data)
+    operator_code = request.values.get("operator_code", 0)
+    if operator_code == 0:
+        return Reply.json({
+            "data": {},
+            "error_code": 1
+        })
+    # data = current_app.config['GETJOB']
+    # data = json.loads(data)
+    data = redis.get(operator_code)
+    if data is None:
+        return Reply.json({
+            "data": {},
+            "error_code": 1
+        })
     return Reply.json(data)
 
 
 @api.route("/config/search_by_code", methods=['GET'])
 def search_by_code():
     """
-    根据 operation_code 查询数据
+    根据 operator_code 查询数据
     :return:
     """
-    operation_code = request.values.get("operation_code", 0)
-    if operation_code == 0:
+    operator_code = request.values.get("operator_code", 0)
+    if operator_code == 0:
         return Reply.error("failed")
-    data = redis.get(operation_code)
+    data = redis.get("op_{operator_code}".format(operator_code=operator_code))
     if data is None:
         return Reply.error("empty")
-    return Reply.success({
-        "operation_code": operation_code,
-        "config": data
-    })
+    return Reply.success([
+        {
+            "operator_code": operator_code,
+            "config": data
+        }
+    ])
 
 
 @api.route("/config/add_config", methods=['POST'])
 def add_config():
+    """
+    添加配置
+    :return:
+    """
     post = request.values
     form = ConfigForm(post)
     if not form.validate():
         return Reply.error(form.errors)
-    return Reply.success("ok")
+    operator_code = "op_{operator_code}".format(operator_code=form.operator_code.data)
+    return Reply.success("ok") if redis.set(operator_code, form.config.data) else Reply.error("failed")
+
+
+@api.route("/config/update_config", methods=['POST'])
+def update_config():
+    """
+    更新配置
+    :return:
+    """
+    post = request.values
+    form = ConfigForm(post)
+    if not form.validate():
+        return Reply.error(form.errors)
+    operator_code = "op_{operator_code}".format(operator_code=form.operator_code.data)
+    data = redis.get(operator_code)
+    if data is None:
+        return Reply.error("此运营商code不存在")
+    return Reply.success("ok") if redis.set(operator_code, form.config.data) else Reply.error("failed")
