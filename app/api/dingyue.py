@@ -28,6 +28,24 @@ def check_is_pin():
 
 @api.route("/get_job", methods=['POST', 'GET'])
 def get_job():
+    """
+    获取配置文件
+    :return: json
+    """
     data = current_app.config['GETJOB']
     data = json.loads(data)
     return Reply.json(data)
+
+
+@api.route("/config/search_by_code", methods=['GET'])
+def search_by_code():
+    operation_code = request.values.get("operation_code", 0)
+    if operation_code == 0:
+        return Reply.error("failed")
+    data = redis.get(operation_code)
+    if data is None:
+        return Reply.error("empty")
+    return Reply.success({
+        "operation_code": operation_code,
+        "config": data
+    })
