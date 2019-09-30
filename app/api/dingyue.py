@@ -49,6 +49,7 @@ def get_job():
             "data": {},
             "error_code": 1
         })
+    data = json.loads(data)
     return Reply.json(data)
 
 
