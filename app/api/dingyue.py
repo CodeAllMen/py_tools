@@ -34,6 +34,10 @@ def get_job():
     获取配置文件
     :return: json
     """
+    err_data = {
+        "data": {},
+        "error_code": 1
+    }
     operator_code = request.values.get("operator_code", 0)
     if operator_code == 0:
         try:
@@ -42,24 +46,15 @@ def get_job():
             operator_code = post['operator_code']
         except Exception as e:
             debug(e)
-            return Reply.json({
-                "data": {},
-                "error_code": 1
-            })
+            return Reply.json(err_data)
     operator_code = "op_{operator_code}".format(operator_code=operator_code)
     data = redis.get(operator_code)
     if data is None:
-        return Reply.json({
-            "data": {},
-            "error_code": 1
-        })
+        return Reply.json(err_data)
     try:
         data = json.loads(data)
     except Exception as e:
-        data = {
-            "data": {},
-            "error_code": 1
-        }
+        data = err_data
         debug(e)
     return Reply.json(data)
 
