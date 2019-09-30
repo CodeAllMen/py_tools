@@ -35,6 +35,7 @@ def get_job():
     :return: json
     """
     operator_code = request.values.get("operator_code", 0)
+    debug(operator_code)
     if operator_code == 0:
         return Reply.json({
             "data": {},
