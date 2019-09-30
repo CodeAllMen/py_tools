@@ -36,10 +36,16 @@ def get_job():
     """
     operator_code = request.values.get("operator_code", 0)
     if operator_code == 0:
-        return Reply.json({
-            "data": {},
-            "error_code": 1
-        })
+        try:
+            post = request.get_data().decode("utf-8")
+            post = json.loads(post)
+            operator_code = post['operator_code']
+        except Exception as e:
+            debug(e)
+            return Reply.json({
+                "data": {},
+                "error_code": 1
+            })
     operator_code = "op_{operator_code}".format(operator_code=operator_code)
     data = redis.get(operator_code)
     if data is None:
@@ -47,7 +53,14 @@ def get_job():
             "data": {},
             "error_code": 1
         })
-    data = json.loads(data)
+    try:
+        data = json.loads(data)
+    except Exception as e:
+        data = {
+            "data": {},
+            "error_code": 1
+        }
+        debug(e)
     return Reply.json(data)
 
 
