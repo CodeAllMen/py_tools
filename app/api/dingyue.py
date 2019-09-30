@@ -28,7 +28,7 @@ def check_is_pin():
     return Reply.error("无此 code， 请添加对应的code和类型")
 
 
-@api.route("/get_job", methods=['POST', 'GET'])
+@api.route("/get_job", methods=['POST'])
 def get_job():
     """
     获取配置文件
@@ -40,8 +40,6 @@ def get_job():
             "data": {},
             "error_code": 1
         })
-    # data = current_app.config['GETJOB']
-    # data = json.loads(data)
     operator_code = "op_{operator_code}".format(operator_code=operator_code)
     data = redis.get(operator_code)
     if data is None:
