@@ -35,7 +35,6 @@ def get_job():
     :return: json
     """
     operator_code = request.values.get("operator_code", 0)
-    debug(operator_code)
     if operator_code == 0:
         return Reply.json({
             "data": {},
@@ -43,6 +42,7 @@ def get_job():
         })
     # data = current_app.config['GETJOB']
     # data = json.loads(data)
+    operator_code = "op_{operator_code}".format(operator_code=operator_code)
     data = redis.get(operator_code)
     if data is None:
         return Reply.json({
