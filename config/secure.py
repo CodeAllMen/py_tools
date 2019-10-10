@@ -1,7 +1,7 @@
 """
 author songjie
 """
-DEBUG = False
+DEBUG = True
 
 REDIS_CONF = {
     "HOST": "127.0.0.1",

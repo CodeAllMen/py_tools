@@ -65,13 +65,13 @@ def search_by_code():
     根据 operator_code 查询数据
     :return:
     """
+    data = redis.keys()
+    debug(data)
     operator_code = request.values.get("operator_code", 0)
     if operator_code == 0:
         return Reply.error("failed")
     data = redis.get("op_{operator_code}".format(operator_code=operator_code))
-    if data is None:
-        return Reply.error("empty")
-    return Reply.success([
+    return Reply.error("empty") if data is None else Reply.success([
         {
             "operator_code": operator_code,
             "config": data
