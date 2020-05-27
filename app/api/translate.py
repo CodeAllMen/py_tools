@@ -26,7 +26,7 @@ def translate():
     return Response(json.dumps(response_data), mimetype="application/json;charset=utf-8")
 
 
-@api.route("/translate_com")
+@api.route("/translate_com", methods=["GET"])
 def translate_com():
     response_data = dict()
     try:
